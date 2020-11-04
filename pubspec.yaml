@@ -1,8 +1,7 @@
 name: story_designer
-description: A new Flutter package.
+description: A flutter package for instagram like story designer.
 version: 0.0.1
-author:
-homepage:
+homepage: https://github.com/mrgulshanyadav/story_designer
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -11,6 +10,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  path_provider: ^1.6.24
+  flutter_colorpicker: ^0.3.4
+  screenshot: ^0.2.0
+  google_fonts: ^1.1.1
+
+
 
 dev_dependencies:
   flutter_test:
