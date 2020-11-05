@@ -1,14 +1,19 @@
 # story_designer
 
-A new Flutter package.
+A package for creating instagram like story, you can use this package to edit images and make it story ready by adding other contents over it like text.
 
 ## Getting Started
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+Add this to your package's pubspec.yaml file:
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+dependencies:
+  story_designer: ^0.0.2
+
+
+## Use it like this
+
+        File editedFile = await Navigator.of(context).push(
+            new MaterialPageRoute(builder: (context)=> StoryDesigner(
+              filePath: file.path,
+            ))
+        );
