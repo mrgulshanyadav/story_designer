@@ -9,3 +9,7 @@
 ## [0.0.3] - 05/11/2020.
 
 * Updated documentation.
+
+## [0.0.4] - 05/11/2020.
+
+* Added example.
