@@ -1,4 +1,4 @@
-package com.gulshanyadav.story_designer_example
+package com.gulshanyadav.example
 
 import io.flutter.embedding.android.FlutterActivity
 

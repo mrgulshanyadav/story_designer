@@ -1,4 +1,4 @@
-# story_designer_example
+# example
 
 A new Flutter application.
 
