@@ -1,6 +1,6 @@
 name: story_designer
-description: A flutter package for instagram like story designer.
-version: 0.0.1
+description: A package for instagram like story maker which is used to edit images and make it story ready by adding other contents over it like text.
+version: 0.0.2
 homepage: https://github.com/mrgulshanyadav/story_designer
 
 environment:

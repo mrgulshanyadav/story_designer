@@ -12,16 +12,16 @@ import 'package:path_provider/path_provider.dart';
 
 import 'dart:ui' as ui;
 
-class StoryEditor extends StatefulWidget {
-  StoryEditor({Key key, this.filePath}) : super(key: key);
+class StoryDesigner extends StatefulWidget {
+  StoryDesigner({Key key, this.filePath}) : super(key: key);
 
   String filePath;
 
   @override
-  _StoryEditorState createState() => _StoryEditorState();
+  _StoryDesignerState createState() => _StoryDesignerState();
 }
 
-class _StoryEditorState extends State<StoryEditor> {
+class _StoryDesignerState extends State<StoryDesigner> {
   static GlobalKey previewContainer = new GlobalKey();
 
   EditableItem _activeItem;
@@ -422,8 +422,8 @@ class _StoryEditorState extends State<StoryEditor> {
 
   Widget _buildItemWidget(EditableItem e) {
     final screen = MediaQuery.of(context).size;
-    double centerHeightPosition = screen.height/2;
-    double centerWidthPosition = screen.width/2;
+    // double centerHeightPosition = screen.height/2;
+    // double centerWidthPosition = screen.width/2;
 
 
     var widget;
