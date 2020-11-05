@@ -5,3 +5,7 @@
 ## [0.0.2] - 05/11/2020.
 
 * Changed widget name from StoryEditor to StoryDesigner.
+
+## [0.0.3] - 05/11/2020.
+
+* Updated documentation.

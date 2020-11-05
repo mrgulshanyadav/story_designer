@@ -2,6 +2,8 @@
 
 A package for creating instagram like story, you can use this package to edit images and make it story ready by adding other contents over it like text.
 
+![Alt Text](https://github.com/mrgulshanyadav/story_designer/edit/master/showcase.gif)
+
 ## Getting Started
 
 Add this to your package's pubspec.yaml file:
