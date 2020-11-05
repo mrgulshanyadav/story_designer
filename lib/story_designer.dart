@@ -369,10 +369,12 @@ class _StoryDesignerState extends State<StoryDesigner> {
                         print(pngBytes);
 
                         File imgFile =new File('$directory/'+DateTime.now().toString()+'.png');
-                        imgFile.writeAsBytes(pngBytes);
+                        imgFile.writeAsBytes(pngBytes).then((value) {
 
-                        // done: return imgFile
-                        Navigator.of(context).pop(imgFile);
+                          // done: return imgFile
+                          Navigator.of(context).pop(imgFile);
+                        });
+
 
 
                       },
