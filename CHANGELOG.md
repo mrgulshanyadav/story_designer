@@ -1,3 +1,7 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - 04/11/2020.
 
-* TODO: Describe initial release.
+* Published initial package.
+
+## [0.0.2] - 05/11/2020.
+
+* Changed widget name from StoryEditor to StoryDesigner.

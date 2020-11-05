@@ -33,8 +33,11 @@ class _MyAppState extends State<MyApp> {
                 final picker = ImagePicker();
                 await picker.getImage(source: ImageSource.gallery).then((file) async {
 
-                  File editedFile = await Navigator.of(context).push(new MaterialPageRoute(
-                      builder: (context)=> StoryDesigner(filePath: file.path,)));
+                  File editedFile = await Navigator.of(context).push(
+                      new MaterialPageRoute(builder: (context)=> StoryDesigner(
+                        filePath: file.path,
+                      ))
+                  );
 
                   // ------- you have editedFile
 
