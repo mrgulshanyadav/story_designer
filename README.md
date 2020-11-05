@@ -6,9 +6,10 @@ A package for creating instagram like story, you can use this package to edit im
 
 Add this to your package's pubspec.yaml file:
 
+```
 dependencies:
   story_designer: ^0.0.2
-
+```
 
 ## Use it like this
 
