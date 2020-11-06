@@ -15,7 +15,7 @@ import 'dart:ui' as ui;
 class StoryDesigner extends StatefulWidget {
   StoryDesigner({Key key, this.filePath}) : super(key: key);
 
-  String filePath;
+  final String filePath;
 
   @override
   _StoryDesignerState createState() => _StoryDesignerState();
@@ -24,28 +24,42 @@ class StoryDesigner extends StatefulWidget {
 class _StoryDesignerState extends State<StoryDesigner> {
   static GlobalKey previewContainer = new GlobalKey();
 
+  // ActiceItem
   EditableItem _activeItem;
 
+  // item initial position
   Offset _initPos;
 
+  // item current position
   Offset _currentPos;
 
+  // item current scale
   double _currentScale;
 
+  // item current rotation
   double _currentRotation;
 
+  // is item in action
   bool _inAction = false;
 
+  // List of all editableitems
   List<EditableItem> stackData = new List();
 
+  // is textfield shown
   bool isTextInput = false;
+  // current textfield text
   String currentText = "";
+  // current textfield color
   Color currentColor = Color(0xffffffff);
+  // current textfield colorpicker color
   Color pickerColor = Color(0xffffffff);
 
+  // current textfield style
   int currentTextStyle = 0;
+  // current textfield fontsize
   double currentFontSize = 26.0;
 
+  // current textfield fontfamily list
   List<String> fontFamilyList = [
     "Lato",
     "Montserrat",
@@ -57,9 +71,11 @@ class _StoryDesignerState extends State<StoryDesigner> {
     "Noto Serif",
     "Anton"
   ];
+  // current textfield fontfamily
   int currentFontFamily = 0;
 
 
+  // is activeitem moved to delete position
   bool isDeletePosition = false;
 
 
@@ -506,6 +522,11 @@ class _StoryDesignerState extends State<StoryDesigner> {
                 });
 
               }
+
+              setState(() {
+                _activeItem = null;
+              });
+
             },
             onPointerCancel: (details){
             },
