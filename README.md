@@ -2,8 +2,13 @@
 
 
 Show some ❤️ and star the repo to support the project
+-
 
 [LinkedIn](https://www.linkedin.com/in/mrgulshanyadav)
+
+------------
+If you want to contribute to this project create a pull request.
+-------------------------------
 
 
 A package for creating instagram like story, you can use this package to edit images and make it story ready by adding other contents over it like text.
