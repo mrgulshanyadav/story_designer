@@ -43,7 +43,7 @@ class _StoryDesignerState extends State<StoryDesigner> {
   bool _inAction = false;
 
   // List of all editableitems
-  List<EditableItem> stackData = new List();
+  List<EditableItem> stackData = [];
 
   // is textfield shown
   bool isTextInput = false;
@@ -91,7 +91,6 @@ class _StoryDesignerState extends State<StoryDesigner> {
     final screen = MediaQuery.of(context).size;
 
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       resizeToAvoidBottomInset: false,
       body: GestureDetector(
         onScaleStart: (details) {
@@ -240,33 +239,35 @@ class _StoryDesignerState extends State<StoryDesigner> {
                                         // raise the [showDialog] widget
                                         showDialog(
                                           context: context,
-                                          child: AlertDialog(
-                                            title: const Text('Pick a color!'),
-                                            content: SingleChildScrollView(
-                                              child: ColorPicker(
-                                                pickerColor: pickerColor,
-                                                onColorChanged: (color) {
-                                                  setState(() {
-                                                    pickerColor = color;
-                                                  });
-                                                },
-                                                showLabel: true,
-                                                pickerAreaHeightPercent: 0.8,
+                                          builder: (ctx) {
+                                            return AlertDialog(
+                                              title:
+                                                  const Text('Pick a color!'),
+                                              content: SingleChildScrollView(
+                                                child: ColorPicker(
+                                                  pickerColor: pickerColor,
+                                                  onColorChanged: (color) {
+                                                    setState(() {
+                                                      pickerColor = color;
+                                                    });
+                                                  },
+                                                  showLabel: true,
+                                                  pickerAreaHeightPercent: 0.8,
+                                                ),
                                               ),
-                                            ),
-                                            actions: <Widget>[
-                                              FlatButton(
-                                                child: const Text('Got it'),
-                                                onPressed: () {
-                                                  setState(() => currentColor =
-                                                      pickerColor);
-                                                  Navigator.of(context,
-                                                          rootNavigator: true)
-                                                      .pop();
-                                                },
-                                              ),
-                                            ],
-                                          ),
+                                              actions: <Widget>[
+                                                FlatButton(
+                                                  child: const Text('Got it'),
+                                                  onPressed: () {
+                                                    setState(() =>
+                                                        currentColor =
+                                                            pickerColor);
+                                                    Navigator.of(ctx).pop();
+                                                  },
+                                                ),
+                                              ],
+                                            );
+                                          },
                                         );
                                       },
                                     ),

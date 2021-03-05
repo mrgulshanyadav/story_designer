@@ -1,6 +1,6 @@
 name: story_designer
 description: A package for creating instagram like story, you can use this package to edit images and make it story ready by adding other contents over it like text.
-version: 0.0.7
+version: 0.1.0
 homepage: https://github.com/mrgulshanyadav/story_designer
 
 environment:
