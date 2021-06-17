@@ -160,7 +160,11 @@ class _StoryDesignerState extends State<StoryDesigner> {
                               child: Container(
                                 padding: currentTextStyle != 0
                                     ? EdgeInsets.only(
-                                        left: 7, right: 7, top: 5, bottom: 5)
+                                        left: 7,
+                                        right: 7,
+                                        top: 5,
+                                        bottom: 5,
+                                      )
                                     : EdgeInsets.all(0),
                                 decoration: currentTextStyle != 0
                                     ? BoxDecoration(
@@ -168,7 +172,9 @@ class _StoryDesignerState extends State<StoryDesigner> {
                                             ? Colors.black.withOpacity(1.0)
                                             : Colors.white.withOpacity(1.0),
                                         borderRadius: BorderRadius.all(
-                                            Radius.circular(4)))
+                                          Radius.circular(4),
+                                        ),
+                                      )
                                     : BoxDecoration(),
                                 child: TextField(
                                   autofocus: true,
@@ -176,20 +182,23 @@ class _StoryDesignerState extends State<StoryDesigner> {
                                   style: GoogleFonts.getFont(
                                           fontFamilyList[currentFontFamily])
                                       .copyWith(
-                                          color: currentColor,
-                                          fontSize: currentFontSize),
+                                    color: currentColor,
+                                    fontSize: currentFontSize,
+                                  ),
                                   cursorColor: currentColor,
                                   maxLines: 3,
                                   minLines: 1,
                                   decoration: InputDecoration(
                                     border: new UnderlineInputBorder(
-                                        borderSide: new BorderSide(
-                                      color: Colors.transparent,
-                                    )),
+                                      borderSide: new BorderSide(
+                                        color: Colors.transparent,
+                                      ),
+                                    ),
                                     focusedBorder: new UnderlineInputBorder(
-                                        borderSide: new BorderSide(
-                                      color: Colors.transparent,
-                                    )),
+                                      borderSide: new BorderSide(
+                                        color: Colors.transparent,
+                                      ),
+                                    ),
                                   ),
                                   onChanged: (input) {
                                     setState(() {
@@ -256,12 +265,12 @@ class _StoryDesignerState extends State<StoryDesigner> {
                                                 ),
                                               ),
                                               actions: <Widget>[
-                                                FlatButton(
+                                                TextButton(
                                                   child: const Text('Got it'),
                                                   onPressed: () {
-                                                    setState(() =>
-                                                        currentColor =
-                                                            pickerColor);
+                                                    setState(() {
+                                                      currentColor = pickerColor;
+                                                    });
                                                     Navigator.of(ctx).pop();
                                                   },
                                                 ),
@@ -273,28 +282,31 @@ class _StoryDesignerState extends State<StoryDesigner> {
                                     ),
                                     IconButton(
                                       icon: Container(
-                                          padding: currentTextStyle != 0
-                                              ? EdgeInsets.only(
-                                                  left: 7,
-                                                  right: 7,
-                                                  top: 5,
-                                                  bottom: 5)
-                                              : EdgeInsets.all(0),
-                                          decoration: currentTextStyle != 0
-                                              ? BoxDecoration(
-                                                  color: currentTextStyle == 1
-                                                      ? Colors.black
-                                                          .withOpacity(1.0)
-                                                      : Colors.white
-                                                          .withOpacity(1.0),
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(4)))
-                                              : BoxDecoration(),
-                                          child: Icon(Icons.auto_awesome,
-                                              color: currentTextStyle != 2
-                                                  ? Colors.white
-                                                  : Colors.black)),
+                                        padding: currentTextStyle != 0
+                                            ? EdgeInsets.only(
+                                                left: 7,
+                                                right: 7,
+                                                top: 5,
+                                                bottom: 5,
+                                              )
+                                            : EdgeInsets.all(0),
+                                        decoration: currentTextStyle != 0
+                                            ? BoxDecoration(
+                                                color: currentTextStyle == 1
+                                                    ? Colors.black
+                                                        .withOpacity(1.0)
+                                                    : Colors.white
+                                                        .withOpacity(1.0),
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(4),
+                                                ),
+                                              )
+                                            : BoxDecoration(),
+                                        child: Icon(Icons.auto_awesome,
+                                            color: currentTextStyle != 2
+                                                ? Colors.white
+                                                : Colors.black),
+                                      ),
                                       onPressed: () {
                                         if (currentTextStyle < 2) {
                                           setState(() {
@@ -335,50 +347,52 @@ class _StoryDesignerState extends State<StoryDesigner> {
                                 ),
                               )),
                           Positioned(
-                              bottom: 50,
-                              left: screen.width / 6,
-                              child: Center(
-                                child: Container(
-                                  width: screen.width / 1.5,
-                                  height: 40,
-                                  alignment: Alignment.center,
-                                  child: ListView.builder(
-                                      itemCount: fontFamilyList.length,
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, index) {
-                                        return GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              currentFontFamily = index;
-                                            });
-                                          },
-                                          child: Container(
-                                            height: 40,
-                                            width: 40,
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                                color:
-                                                    index == currentFontFamily
-                                                        ? Colors.white
-                                                        : Colors.black,
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(20))),
-                                            child: Text(
-                                              'Aa',
-                                              style: GoogleFonts.getFont(
-                                                      fontFamilyList[index])
-                                                  .copyWith(
-                                                      color: index ==
-                                                              currentFontFamily
-                                                          ? Colors.black
-                                                          : Colors.white),
+                            bottom: 50,
+                            left: screen.width / 6,
+                            child: Center(
+                              child: Container(
+                                width: screen.width / 1.5,
+                                height: 40,
+                                alignment: Alignment.center,
+                                child: ListView.builder(
+                                    itemCount: fontFamilyList.length,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            currentFontFamily = index;
+                                          });
+                                        },
+                                        child: Container(
+                                          height: 40,
+                                          width: 40,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: index == currentFontFamily
+                                                ? Colors.white
+                                                : Colors.black,
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(20),
                                             ),
                                           ),
-                                        );
-                                      }),
-                                ),
-                              )),
+                                          child: Text(
+                                            'Aa',
+                                            style: GoogleFonts.getFont(
+                                                    fontFamilyList[index])
+                                                .copyWith(
+                                              color: index == currentFontFamily
+                                                  ? Colors.black
+                                                  : Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -415,7 +429,9 @@ class _StoryDesignerState extends State<StoryDesigner> {
                         });
                       },
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
                       ),
                       color: Colors.black.withOpacity(0.7),
                       child: Row(
@@ -424,7 +440,10 @@ class _StoryDesignerState extends State<StoryDesigner> {
                         children: [
                           Text(
                             'Done',
-                            style: TextStyle(color: Colors.white, fontSize: 18),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
                           ),
                         ],
                       ),
@@ -440,19 +459,22 @@ class _StoryDesignerState extends State<StoryDesigner> {
                   child: Container(
                     width: screen.width,
                     child: Center(
-                        child: Container(
-                      height: !isDeletePosition ? 60.0 : 100,
-                      width: !isDeletePosition ? 60.0 : 100,
-                      decoration: BoxDecoration(
+                      child: Container(
+                        height: !isDeletePosition ? 60.0 : 100,
+                        width: !isDeletePosition ? 60.0 : 100,
+                        decoration: BoxDecoration(
                           color: Colors.black.withOpacity(0.5),
                           borderRadius: BorderRadius.all(
-                              Radius.circular(!isDeletePosition ? 30 : 50))),
-                      child: Icon(
-                        Icons.delete,
-                        color: Colors.white,
-                        size: !isDeletePosition ? 30 : 50,
+                            Radius.circular(!isDeletePosition ? 30 : 50),
+                          ),
+                        ),
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                          size: !isDeletePosition ? 30 : 50,
+                        ),
                       ),
-                    )),
+                    ),
                   ),
                 ),
               ),
@@ -474,38 +496,52 @@ class _StoryDesignerState extends State<StoryDesigner> {
         if (e.textStyle == 0) {
           widget = Text(
             e.value,
-            style: GoogleFonts.getFont(fontFamilyList[e.fontFamily])
-                .copyWith(color: e.color, fontSize: e.fontSize),
+            style: GoogleFonts.getFont(fontFamilyList[e.fontFamily]).copyWith(
+              color: e.color,
+              fontSize: e.fontSize,
+            ),
           );
         } else if (e.textStyle == 1) {
           widget = Container(
             padding: EdgeInsets.only(left: 7, right: 7, top: 5, bottom: 5),
             decoration: BoxDecoration(
-                color: Colors.black.withOpacity(1.0),
-                borderRadius: BorderRadius.all(Radius.circular(4))),
+              color: Colors.black.withOpacity(1.0),
+              borderRadius: BorderRadius.all(
+                Radius.circular(4),
+              ),
+            ),
             child: Text(
               e.value,
-              style: GoogleFonts.getFont(fontFamilyList[e.fontFamily])
-                  .copyWith(color: e.color, fontSize: e.fontSize),
+              style: GoogleFonts.getFont(fontFamilyList[e.fontFamily]).copyWith(
+                color: e.color,
+                fontSize: e.fontSize,
+              ),
             ),
           );
         } else if (e.textStyle == 2) {
           widget = Container(
             padding: EdgeInsets.only(left: 7, right: 7, top: 5, bottom: 5),
             decoration: BoxDecoration(
-                color: Colors.white.withOpacity(1.0),
-                borderRadius: BorderRadius.all(Radius.circular(4))),
+              color: Colors.white.withOpacity(1.0),
+              borderRadius: BorderRadius.all(
+                Radius.circular(4),
+              ),
+            ),
             child: Text(
               e.value,
-              style: GoogleFonts.getFont(fontFamilyList[e.fontFamily])
-                  .copyWith(color: e.color, fontSize: e.fontSize),
+              style: GoogleFonts.getFont(fontFamilyList[e.fontFamily]).copyWith(
+                color: e.color,
+                fontSize: e.fontSize,
+              ),
             ),
           );
         } else {
           widget = Text(
             e.value,
-            style: GoogleFonts.getFont(fontFamilyList[e.fontFamily])
-                .copyWith(color: e.color, fontSize: e.fontSize),
+            style: GoogleFonts.getFont(fontFamilyList[e.fontFamily]).copyWith(
+              color: e.color,
+              fontSize: e.fontSize,
+            ),
           );
         }
         break;

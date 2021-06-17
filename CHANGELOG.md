@@ -17,3 +17,11 @@
 ## [0.0.7] - 19/11/2020.
 
 * Minor Bugs Fixes.
+
+## [0.0.7] - 19/11/2020.
+
+* Minor Bugs Fixes.
+
+## [1.0.0] - 17/06/2021.
+
+* Upgraded to Flutter 2.
