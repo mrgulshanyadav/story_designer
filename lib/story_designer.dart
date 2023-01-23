@@ -12,8 +12,10 @@ import 'package:path_provider/path_provider.dart';
 
 import 'dart:ui' as ui;
 
+import 'package:screenshot/screenshot.dart';
+
 class StoryDesigner extends StatefulWidget {
-  StoryDesigner({Key key, this.filePath}) : super(key: key);
+  StoryDesigner({required this.filePath});
 
   final String filePath;
 
@@ -25,19 +27,19 @@ class _StoryDesignerState extends State<StoryDesigner> {
   static GlobalKey previewContainer = new GlobalKey();
 
   // ActiceItem
-  EditableItem _activeItem;
+  EditableItem? _activeItem;
 
   // item initial position
-  Offset _initPos;
+  Offset? _initPos;
 
   // item current position
-  Offset _currentPos;
+  Offset? _currentPos;
 
   // item current scale
-  double _currentScale;
+  double? _currentScale;
 
   // item current rotation
-  double _currentRotation;
+  double? _currentRotation;
 
   // is item in action
   bool _inAction = false;
@@ -60,22 +62,15 @@ class _StoryDesignerState extends State<StoryDesigner> {
   double currentFontSize = 26.0;
 
   // current textfield fontfamily list
-  List<String> fontFamilyList = [
-    "Lato",
-    "Montserrat",
-    "Lobster",
-    "Spectral SC",
-    "Dancing Script",
-    "Oswald",
-    "Turret Road",
-    "Noto Serif",
-    "Anton"
-  ];
+  List<String> fontFamilyList = ["Lato", "Montserrat", "Lobster", "Spectral SC", "Dancing Script", "Oswald", "Turret Road", "Noto Serif", "Anton"];
   // current textfield fontfamily
   int currentFontFamily = 0;
 
   // is activeitem moved to delete position
   bool isDeletePosition = false;
+
+  //Create an instance of ScreenshotController
+  ScreenshotController screenshotController = ScreenshotController();
 
   @override
   void initState() {
@@ -97,20 +92,20 @@ class _StoryDesignerState extends State<StoryDesigner> {
           if (_activeItem == null) return;
 
           _initPos = details.focalPoint;
-          _currentPos = _activeItem.position;
-          _currentScale = _activeItem.scale;
-          _currentRotation = _activeItem.rotation;
+          _currentPos = _activeItem?.position;
+          _currentScale = _activeItem?.scale;
+          _currentRotation = _activeItem?.rotation;
         },
         onScaleUpdate: (details) {
           if (_activeItem == null) return;
-          final delta = details.focalPoint - _initPos;
-          final left = (delta.dx / screen.width) + _currentPos.dx;
-          final top = (delta.dy / screen.height) + _currentPos.dy;
+          final delta = details.focalPoint - _initPos!;
+          final left = (delta.dx / screen.width) + _currentPos!.dx;
+          final top = (delta.dy / screen.height) + _currentPos!.dy;
 
           setState(() {
-            _activeItem.position = Offset(left, top);
-            _activeItem.rotation = details.rotation + _currentRotation;
-            _activeItem.scale = details.scale * _currentScale;
+            _activeItem?.position = Offset(left, top);
+            _activeItem?.rotation = details.rotation + _currentRotation!;
+            _activeItem?.scale = details.scale * _currentScale!;
           });
         },
         onTap: () {
@@ -134,8 +129,8 @@ class _StoryDesignerState extends State<StoryDesigner> {
         },
         child: Stack(
           children: [
-            RepaintBoundary(
-              key: previewContainer,
+            Screenshot(
+              controller: screenshotController,
               child: Stack(
                 children: [
                   Container(color: Colors.black54),
@@ -168,9 +163,7 @@ class _StoryDesignerState extends State<StoryDesigner> {
                                     : EdgeInsets.all(0),
                                 decoration: currentTextStyle != 0
                                     ? BoxDecoration(
-                                        color: currentTextStyle == 1
-                                            ? Colors.black.withOpacity(1.0)
-                                            : Colors.white.withOpacity(1.0),
+                                        color: currentTextStyle == 1 ? Colors.black.withOpacity(1.0) : Colors.white.withOpacity(1.0),
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(4),
                                         ),
@@ -179,9 +172,7 @@ class _StoryDesignerState extends State<StoryDesigner> {
                                 child: TextField(
                                   autofocus: true,
                                   textAlign: TextAlign.center,
-                                  style: GoogleFonts.getFont(
-                                          fontFamilyList[currentFontFamily])
-                                      .copyWith(
+                                  style: GoogleFonts.getFont(fontFamilyList[currentFontFamily]).copyWith(
                                     color: currentColor,
                                     fontSize: currentFontSize,
                                   ),
@@ -242,16 +233,14 @@ class _StoryDesignerState extends State<StoryDesigner> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     IconButton(
-                                      icon: Icon(Icons.color_lens_outlined,
-                                          color: Colors.white),
+                                      icon: Icon(Icons.color_lens_outlined, color: Colors.white),
                                       onPressed: () {
                                         // raise the [showDialog] widget
                                         showDialog(
                                           context: context,
                                           builder: (ctx) {
                                             return AlertDialog(
-                                              title:
-                                                  const Text('Pick a color!'),
+                                              title: const Text('Pick a color!'),
                                               content: SingleChildScrollView(
                                                 child: ColorPicker(
                                                   pickerColor: pickerColor,
@@ -292,20 +281,13 @@ class _StoryDesignerState extends State<StoryDesigner> {
                                             : EdgeInsets.all(0),
                                         decoration: currentTextStyle != 0
                                             ? BoxDecoration(
-                                                color: currentTextStyle == 1
-                                                    ? Colors.black
-                                                        .withOpacity(1.0)
-                                                    : Colors.white
-                                                        .withOpacity(1.0),
+                                                color: currentTextStyle == 1 ? Colors.black.withOpacity(1.0) : Colors.white.withOpacity(1.0),
                                                 borderRadius: BorderRadius.all(
                                                   Radius.circular(4),
                                                 ),
                                               )
                                             : BoxDecoration(),
-                                        child: Icon(Icons.auto_awesome,
-                                            color: currentTextStyle != 2
-                                                ? Colors.white
-                                                : Colors.black),
+                                        child: Icon(Icons.auto_awesome, color: currentTextStyle != 2 ? Colors.white : Colors.black),
                                       ),
                                       onPressed: () {
                                         if (currentTextStyle < 2) {
@@ -328,8 +310,7 @@ class _StoryDesignerState extends State<StoryDesigner> {
                               child: Transform(
                                 alignment: FractionalOffset.center,
                                 // Rotate sliders by 90 degrees
-                                transform: new Matrix4.identity()
-                                  ..rotateZ(270 * 3.1415927 / 180),
+                                transform: new Matrix4.identity()..rotateZ(270 * 3.1415927 / 180),
                                 child: SizedBox(
                                   width: 300,
                                   child: Slider(
@@ -337,8 +318,7 @@ class _StoryDesignerState extends State<StoryDesigner> {
                                       min: 14,
                                       max: 74,
                                       activeColor: Colors.white,
-                                      inactiveColor:
-                                          Colors.white.withOpacity(0.4),
+                                      inactiveColor: Colors.white.withOpacity(0.4),
                                       onChanged: (input) {
                                         setState(() {
                                           currentFontSize = input;
@@ -370,21 +350,15 @@ class _StoryDesignerState extends State<StoryDesigner> {
                                           width: 40,
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
-                                            color: index == currentFontFamily
-                                                ? Colors.white
-                                                : Colors.black,
+                                            color: index == currentFontFamily ? Colors.white : Colors.black,
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(20),
                                             ),
                                           ),
                                           child: Text(
                                             'Aa',
-                                            style: GoogleFonts.getFont(
-                                                    fontFamilyList[index])
-                                                .copyWith(
-                                              color: index == currentFontFamily
-                                                  ? Colors.black
-                                                  : Colors.white,
+                                            style: GoogleFonts.getFont(fontFamilyList[index]).copyWith(
+                                              color: index == currentFontFamily ? Colors.black : Colors.white,
                                             ),
                                           ),
                                         ),
@@ -407,33 +381,26 @@ class _StoryDesignerState extends State<StoryDesigner> {
                 child: Positioned(
                     top: 50,
                     right: 20,
-                    child: FlatButton(
+                    child: TextButton(
                       onPressed: () async {
                         //done: save image and return captured image to previous screen
 
-                        RenderRepaintBoundary boundary =
-                            previewContainer.currentContext.findRenderObject();
-                        ui.Image image = await boundary.toImage();
-                        final directory =
-                            (await getApplicationDocumentsDirectory()).path;
-                        ByteData byteData = await image.toByteData(
-                            format: ui.ImageByteFormat.png);
-                        Uint8List pngBytes = byteData.buffer.asUint8List();
-                        print(pngBytes);
+                        final directory = (await getApplicationDocumentsDirectory()).path;
+                        Uint8List? pngBytes = await screenshotController.capture();
+                        print('captured: $pngBytes');
 
-                        File imgFile = new File(
-                            '$directory/' + DateTime.now().toString() + '.png');
-                        imgFile.writeAsBytes(pngBytes).then((value) {
+                        File imgFile = new File('$directory/' + DateTime.now().toString() + '.png');
+                        imgFile.writeAsBytes(pngBytes!).then((value) {
                           // done: return imgFile
                           Navigator.of(context).pop(imgFile);
                         });
                       },
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.black.withOpacity(0.7)),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
                         ),
                       ),
-                      color: Colors.black.withOpacity(0.7),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -496,7 +463,7 @@ class _StoryDesignerState extends State<StoryDesigner> {
         if (e.textStyle == 0) {
           widget = Text(
             e.value,
-            style: GoogleFonts.getFont(fontFamilyList[e.fontFamily]).copyWith(
+            style: GoogleFonts.getFont(fontFamilyList[e.fontFamily!]).copyWith(
               color: e.color,
               fontSize: e.fontSize,
             ),
@@ -512,7 +479,7 @@ class _StoryDesignerState extends State<StoryDesigner> {
             ),
             child: Text(
               e.value,
-              style: GoogleFonts.getFont(fontFamilyList[e.fontFamily]).copyWith(
+              style: GoogleFonts.getFont(fontFamilyList[e.fontFamily!]).copyWith(
                 color: e.color,
                 fontSize: e.fontSize,
               ),
@@ -529,7 +496,7 @@ class _StoryDesignerState extends State<StoryDesigner> {
             ),
             child: Text(
               e.value,
-              style: GoogleFonts.getFont(fontFamilyList[e.fontFamily]).copyWith(
+              style: GoogleFonts.getFont(fontFamilyList[e.fontFamily!]).copyWith(
                 color: e.color,
                 fontSize: e.fontSize,
               ),
@@ -538,7 +505,7 @@ class _StoryDesignerState extends State<StoryDesigner> {
         } else {
           widget = Text(
             e.value,
-            style: GoogleFonts.getFont(fontFamilyList[e.fontFamily]).copyWith(
+            style: GoogleFonts.getFont(fontFamilyList[e.fontFamily!]).copyWith(
               color: e.color,
               fontSize: e.fontSize,
             ),
@@ -574,9 +541,7 @@ class _StoryDesignerState extends State<StoryDesigner> {
               _inAction = false;
               print("e.position.dy: " + e.position.dy.toString());
               print("e.position.dx: " + e.position.dx.toString());
-              if (e.position.dy >= 0.8 &&
-                  e.position.dx >= 0.0 &&
-                  e.position.dx <= 1.0) {
+              if (e.position.dy >= 0.8 && e.position.dx >= 0.0 && e.position.dx <= 1.0) {
                 print('Delete the Item');
 
                 setState(() {
@@ -593,9 +558,7 @@ class _StoryDesignerState extends State<StoryDesigner> {
             onPointerMove: (details) {
               print("e.position.dy: " + e.position.dy.toString());
               print("e.position.dx: " + e.position.dx.toString());
-              if (e.position.dy >= 0.8 &&
-                  e.position.dx >= 0.0 &&
-                  e.position.dx <= 1.0) {
+              if (e.position.dy >= 0.8 && e.position.dx >= 0.0 && e.position.dx <= 1.0) {
                 print('Delete the Item');
 
                 setState(() {
@@ -621,10 +584,10 @@ class EditableItem {
   Offset position = Offset(0.4, 0.4);
   double scale = 1.0;
   double rotation = 0.0;
-  ItemType type;
-  String value;
-  Color color;
-  int textStyle;
-  double fontSize;
-  int fontFamily;
+  ItemType type = ItemType.Image;
+  String value = '';
+  Color color = Colors.black;
+  int? textStyle;
+  double fontSize = 16;
+  int? fontFamily;
 }
