@@ -26,6 +26,6 @@
 
 * Upgraded to Flutter 2.
 
-## [2.0.0] - 23/01/2023.
+## [2.0.1] - 02/02/2023.
 
 * Upgraded to Flutter 3.3.
