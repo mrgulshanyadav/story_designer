@@ -10,8 +10,6 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'dart:ui' as ui;
-
 import 'package:screenshot/screenshot.dart';
 
 class StoryDesigner extends StatefulWidget {
@@ -24,8 +22,6 @@ class StoryDesigner extends StatefulWidget {
 }
 
 class _StoryDesignerState extends State<StoryDesigner> {
-  static GlobalKey previewContainer = new GlobalKey();
-
   // ActiceItem
   EditableItem? _activeItem;
 

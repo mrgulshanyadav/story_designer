@@ -10,7 +10,7 @@ Add this to your package's pubspec.yaml file:
 
 ```
 dependencies:
-  story_designer: ^2.0.1
+  story_designer: ^2.1.0
 ```
 
 ## Use it like this
